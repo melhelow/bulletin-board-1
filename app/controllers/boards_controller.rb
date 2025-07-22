@@ -18,16 +18,17 @@ class BoardsController < ApplicationController
   end
 
   def create
-    the_board = Board.new
-    the_board.name = params.fetch("query_name")
+  the_board = Board.new
+  the_board.name = params.fetch("query_name")
 
-    if the_board.valid?
-      the_board.save
-      redirect_to("/boards", { :notice => "Board created successfully." })
-    else
-      redirect_to("/boards", { :alert => the_board.errors.full_messages.to_sentence })
-    end
+  if the_board.valid?
+    the_board.save
+    redirect_to("/boards", { :notice => "Board created successfully." })
+  else
+    redirect_to("/boards", { :alert => the_board.errors.full_messages.to_sentence })
   end
+end
+
 
   def update
     the_id = params.fetch("path_id")
